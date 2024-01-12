@@ -1,11 +1,11 @@
 # python-docx
 
-*python-docx* is a Python library for reading, creating, and updating Microsoft Word 2007+ (.docx) files.
+*python-docx* is a Python library for reading, creating, and updating Microsoft Word 2007+ (.docx) files, for which my fork adds support for reading and writing footnotes.
 
 ## Installation
 
 ```
-pip install python-docx
+pip install git+https://github.com/puntorigen/python-docx.git
 ```
 
 ## Example
