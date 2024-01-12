@@ -8,6 +8,7 @@ from docx.document import Document
 from docx.enum.style import WD_STYLE_TYPE
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
 from docx.parts.hdrftr import FooterPart, HeaderPart
+from docx.parts.fntent import FootnotesPart, EndnotesPart
 from docx.parts.numbering import NumberingPart
 from docx.parts.settings import SettingsPart
 from docx.parts.story import StoryPart
@@ -117,6 +118,37 @@ class DocumentPart(StoryPart):
         document."""
         return self._styles_part.styles
 
+
+    @property
+    def footnotes(self):
+        """
+        A |Footnotes| object providing access to the footnotes in the footnotes part
+        of this document.
+        """
+        return self._footnotes_part.footnotes
+
+    def get_footnote(self, footnote_id):
+        """
+        Return the footnote matching *footnote_id*. 
+        Returns |None| if no footnote matches *footnote_id*
+        """
+        return self.footnotes.get_by_id(footnote_id)
+
+    @property
+    def endnotes(self):
+        """
+        A |Endnotes| object providing access to the endnotes in the endnotes part
+        of this document.
+        """
+        return self._endnotes_part.endnotes
+
+    def get_endnote(self, endnote_id):
+        """
+        Return the endnote matching *endnote_id*. 
+        Returns |None| if no endnote matches *endnote_id*
+        """
+        return self.endnotes.get_by_id(endnote_id)
+    
     @property
     def _settings_part(self):
         """A |SettingsPart| object providing access to the document-level settings for

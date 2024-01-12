@@ -12,6 +12,8 @@ from docx.oxml.drawing import CT_Drawing
 from docx.oxml.text.pagebreak import CT_LastRenderedPageBreak
 from docx.shape import InlineShape
 from docx.shared import StoryChild
+from ..fntent.footnoteReference import FootnoteReference 
+from ..fntent.endnoteReference import EndnoteReference 
 from docx.styles.style import CharacterStyle
 from docx.text.font import Font
 from docx.text.pagebreak import RenderedPageBreak
@@ -240,6 +242,21 @@ class Run(StoryChild):
     def underline(self, value: bool):
         self.font.underline = value
 
+    @property
+    def footnotes(self):
+        """
+        Return a list of footnote proxy elements.
+        """
+
+        return [FootnoteReference(footnoteReference, self) for footnoteReference in self._r.footnoteReference_lst]
+
+    @property
+    def endnotes(self):
+        """
+        Return a list of endnote proxy elements.
+        """
+
+        return [EndnoteReference(endnoteReference, self) for endnoteReference in self._r.endnoteReference_lst]
 
 class _Text:
     """Proxy object wrapping `<w:t>` element."""
