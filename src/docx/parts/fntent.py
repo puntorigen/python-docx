@@ -15,7 +15,7 @@ from ..opc.packuri import PackURI
 from ..opc.part import XmlPart
 from ..oxml import parse_xml
 from ..fntent.fntent import Footnotes, Endnotes
-from .story import BaseStoryPart
+from .story import StoryPart as BaseStoryPart
 
 
 class FootnotesPart(BaseStoryPart):
